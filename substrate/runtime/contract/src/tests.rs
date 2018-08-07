@@ -424,9 +424,9 @@ fn refunds_unused_gas() {
 
 		Staking::set_free_balance(&0, 100_000_000);
 
-		assert_ok!(Contract::call(&0, 1, 0, 100_000, Vec::new(),));
+		assert_ok!(Contract::call(&0, 1, 0, 100_000, Vec::new()));
 
-		assert_eq!(Staking::free_balance(&0), 100_000_000 - 4 - (2 * 135),);
+		assert_eq!(Staking::free_balance(&0), 100_000_000 - 4 - (2 * 135));
 	});
 }
 
@@ -437,9 +437,9 @@ fn call_with_zero_value() {
 
 		Staking::set_free_balance(&0, 100_000_000);
 
-		assert_ok!(Contract::call(&0, 1, 0, 100_000, Vec::new(),));
+		assert_ok!(Contract::call(&0, 1, 0, 100_000, Vec::new()));
 
-		assert_eq!(Staking::free_balance(&0), 100_000_000 - (2 * 135),);
+		assert_eq!(Staking::free_balance(&0), 100_000_000 - (2 * 135));
 	});
 }
 
@@ -450,7 +450,7 @@ fn create_with_zero_endowment() {
 	with_externalities(&mut new_test_ext(0, 2), || {
 		Staking::set_free_balance(&0, 100_000_000);
 
-		assert_ok!(Contract::create(&0, 0, 100_000, code_nop, Vec::new(),));
+		assert_ok!(Contract::create(&0, 0, 100_000, code_nop, Vec::new()));
 
 		assert_eq!(
 			Staking::free_balance(&0),
@@ -521,6 +521,6 @@ fn top_level_call_refunds_even_if_fails() {
 			"vm execute returned error while call"
 		);
 
-		assert_eq!(Staking::free_balance(&0), 100_000_000 - (4 * 3) - (4 * 135),);
+		assert_eq!(Staking::free_balance(&0), 100_000_000 - (4 * 3) - (4 * 135));
 	});
 }
